@@ -1,2 +1,10 @@
 # Smart-Home-Security-System-Based-on-Face-Detection-and-Face-Recognition-Using-Raspberry-Pi
 Smart Home Security System Based on Face Detection and Face Recognition Using Raspberry Pi
+
+The system is consist of the identified member’s photos in the database.  Any new entry can be made as and when required in the database.  Image will be captured and face recognition will be performed. If face match found the green color led will light up and mail will be send to user along with photo as succesfull enterence. Else red color bulb will light up, a message will be sent to the owner on his telegram account along with the photo of the unknown person if the person is not identified.
+If there is no one showing their face to the camera within a certain period of time (for example 10 seconds), both LEDs will be off. In other words, if the face is recognized, the green led lights up for 10 seconds and the system sends an e-mail. After 10 seconds, if there is no face in the camera, the green led turns off. The same goes for the "unknown" person (red led).
+There could be several photos of the person(s) to be introduced as "dataset" at first, and these images are stored in each private folder. (name of folder == name of person in picture)
+These photos are opened one by one, the face in the picture is detected with the help of OpenCV and the face recognition library, and this face-name match is written to an output file based on HOG(Histogram of oriented gradients). This output file will be the model of the facial recognition system in the next step.
+Face detection is done with the help of haar cascade, if the face is detected, the detected face is compared with the data in the model file (with the face_recognition.compare command), if there is a similarity, the name of the face in the "frame" is found from the index value.
+If no similar face is found, we assign it directly as "unknown". The message will include information of known or unkown person and photo of person.
+Depending on the situation, leds on the breadboard will light up in order to use the data I received from the program.
